@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
 import BoardGame from '../views/BoardGame.vue'
+import Welcome from '../views/Welcome.vue'
 
 Vue.use(VueRouter)
 
@@ -15,6 +16,11 @@ const routes = [
     path: '/board-game',
     name: 'BoardGame',
     component: BoardGame
+  },
+  {
+    path: '/',
+    name: 'Welcome',
+    component: Welcome
   }
 ]
 
