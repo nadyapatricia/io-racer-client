@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <title>io.racer</title>
+</head>
+<body>
+  
+  <!-- ini home page -->
+  <div id="home-page" class="container-fluid text-center d-flex justify-content-center align-items-center"
+  style="min-height: 100vh; color: rgb(201, 96, 96);">
+    <div>
+      <h1>io.racer</h1>
+      <h3 class="mb-3">Enter player name</h3>
+      <input type="text" class="input" style="color: rgb(121, 62, 62);">
+      <div class="line-box">
+        <div class="line"></div>
+      </div> <br>
+      <button class="btn btn-info mt-3" type="submit">Play now</button>
+    </div>
+  </div>
+  <!-- home page -->
+
+  <!-- game rules -->
+  <div id="game-rules" style="min-height: 100vh;">
+    <div class="container-fluid">
+      <h1>Game rules</h1>
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-12 mt-5">
+          <img src="assets/iconfinder-document10-1622826_121954.png" alt="" class="mt-4 ml-5" style="width: 60%;">
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-12" style="margin-top: 7%;">
+          <div class="rules">
+            <!-- rules texts -->
+            <h4>1. Hellooooo</h4> <br>
+            <h4>2. Cara mainnya gimana?</h4> <br>
+            <h4>3. Apa tujuan dari game ini?</h4> <br>
+            <h4>4. Cara nentuin pemenang?</h4> <br>
+            <button class="btn btn-warning">I'm ready to play!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- game rules -->
+
+  <!-- game-page -->
+  <div id="game-page" style="min-height: 100vh;">
+    <div class="container-fluid d-flex flex-column justify-content-center text-center">
+      <h2 style="margin-bottom: 10%; color: rgb(79, 79, 58);">Click the correct arrow before your opponent does!</h2>
+
+      <!-- game-items -->
+      <div class="game-items d-flex justify-content-around">
+        <!-- scoreboard 1 -->
+        <div class="score-board mt-5">
+          <div class="card border-dark mb-3 text-center" style="width: 8rem;">
+            <div class="card-header border-dark">You</div>
+            <div class="card-body text-dark">
+              <p class="card-text">9</p>
+            </div>
+          </div>
+        </div>
+        <!-- scoreboard 1 -->
+
+        <!-- arrow -->
+        <div class="arrow"><img src="./assets/arrow_top_15603.png" alt=""></div>
+        <!-- arrow -->
+
+        <!-- scoreboard 2 -->
+        <div class="score-board mt-5">
+          <div class="card border-dark mb-3 text-center" style="width: 8rem;">
+            <div class="card-header border-dark">Player X</div>
+            <div class="card-body text-dark">
+              <p class="card-text">6</p>
+            </div>
+          </div>
+        </div>
+        <!-- scoreboard 2 -->
+      </div>
+      <!-- game-items -->
+      <button class="btn btn-info mt-5" style="width: 40%; margin-left: 30%;">Play now</button>
+
+    </div>
+  </div>
+  <!-- game-page -->
+
+</body>
+</html>
