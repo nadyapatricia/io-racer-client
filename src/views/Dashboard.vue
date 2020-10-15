@@ -22,6 +22,12 @@ export default {
       localStorage.setItem('name', this.name)
       this.$router.push('/board-game')
     }
+  },
+  created () {
+    if (localStorage.getItem('name')) {
+      console.log(this.$store.state.players)
+      this.$router.push({ name: 'BoardGame' })
+    }
   }
 }
 </script>

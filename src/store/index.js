@@ -6,14 +6,28 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     players: [],
-    soal: 0
+    soal: [],
+    winner: '',
+    index: 0
   },
   mutations: {
-    SOCKET_setPlayers (state, payload) {
+    INCREMENT_INDEX (state) {
+      state.index++
+    },
+    SOCKET_MUTATION_GET_DATA_PLAYER (state, payload) {
       state.players = payload
     },
-    SOCKET_setSoal (state, payload) {
+    SOCKET_MUTATION_GET_RANDOM_QUESTION (state, payload) {
       state.soal = payload
+    },
+    SOCKET_MUTATION_GET_WINNER (state, payload) {
+      console.log(payload)
+      state.winner = payload
+    }
+  },
+  actions: {
+    incrementIndex (context) {
+      context.commit('INCREMENT_INDEX')
     }
   }
 })

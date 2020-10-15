@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>{{soal}}</h1>
+    <h1 v-if="pertanyaan">{{ soal }}</h1>
     <button class="btn btn-warning" v-if="start" @click="startGame">Start</button>
     <PlayerCard
       v-for="(player, i) in players"
@@ -17,7 +17,9 @@ export default {
   name: 'BoardGame',
   data () {
     return {
-      start: false
+      start: true,
+      score: 0,
+      pertanyaan: false
     }
   },
   components: {
@@ -28,41 +30,36 @@ export default {
       return this.$store.state.players
     },
     soal () {
-      return this.$store.state.soal
-    }
-  },
-  sockets: {
-    playerProfile (payload) {
-      this.$store.commit('SOCKET_setPlayers', payload)
-      const players = this.$store.state.players.length
-      if (players >= 2) {
-        this.start = true
-      } else {
-        this.start = false
-      }
-    },
-    gamePlay (random) {
-      this.$store.commit('SOCKET_setSoal', random)
-      console.log(this.$store.state.soal)
+      return this.$store.state.soal[this.$store.state.index]
     }
   },
   methods: {
+    incrementScore () {
+      this.score += 5
+    },
     startGame () {
-      this.$socket.emit('startGame')
+      this.pertanyaan = true
       // this.start = false
     },
-    addPoint () {
-      this.$socket.emit('addPoint')
+    addPoint (num) {
+      this.$socket.emit('addPoint', num)
+      console.log(num)
     }
+  },
+  created () {
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        this.showModal = !this.showModal
+      }
+    })
   },
   mounted () {
     window.addEventListener('keydown', function (e) {
       console.log(e.keyCode)
-      if (e.keyCode === this.soal) {
-        this.addPoint()
+      if (e.keyCode === this.$store.state.soal[this.$store.state.index]) {
+        this.incrementScore()
+        console.log(this.score)
       }
-      // this.keycode = e.keyCode
-      // console.log(this.keycode)
     })
   }
 }

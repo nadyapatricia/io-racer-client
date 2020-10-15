@@ -9,8 +9,8 @@ Vue.use(new VueSocketIO({
   connection: 'http://localhost:3000',
   vuex: {
     store,
-    actionPrefix: 'SOCKET_',
-    mutationPrefix: 'SOCKET_'
+    actionPrefix: 'SOCKET_ACTION_',
+    mutationPrefix: 'SOCKET_MUTATION_'
   }
 }))
 
