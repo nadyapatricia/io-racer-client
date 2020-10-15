@@ -13,16 +13,15 @@ export default {
   name: 'Home',
   data () {
     return {
-      name: '',
-      players: []
+      name: ''
     }
   },
   methods: {
     register () {
       this.$socket.emit('newPlayer', { name: this.name, point: 0 })
+      localStorage.setItem('name', this.name)
       this.$router.push('/board-game')
     }
   }
-
 }
 </script>
