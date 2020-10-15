@@ -1,0 +1,61 @@
+* {
+  font-family: 'Poppins', cursive;
+}
+
+#game-rules {
+  background-image: linear-gradient(to bottom right, #DBEB89,#e9e4f0);
+}
+
+#home-page {
+  background-image: linear-gradient(to bottom right, #D8E8EB,#FFBD8B);
+}
+
+#game-page {
+  background-image: linear-gradient(to bottom right, #F2FAFF,#BFB6ED);
+}
+
+.container-fluid {
+  padding: 4% 7% 3%;
+}
+
+.input {
+  width: 100%;
+  padding: 10px;
+  background: transparent;
+  border: none;
+  outline: none;
+}
+
+.line-box {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background: #BCBCBC;
+}
+
+.line {
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  top: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgb(201, 96, 96);
+  transition: ease .6s;
+}
+
+.input:focus + .line-box .line {
+  width: 100%;
+}
+
+.btn-info {
+  border-color: #69BAA5;
+  background-color: #69BAA5;
+  color: white;
+}
+
+.btn-info:hover {
+  background-color: #4F8073;
+  border-color: transparent;
+  color: white;
+}
