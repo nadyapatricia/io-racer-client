@@ -5,11 +5,16 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    players: []
   },
   mutations: {
+    SOCKET_setPlayers (state, payload) {
+      state.players.push(payload)
+    }
   },
   actions: {
-  },
-  modules: {
+    SOCKET_register (context, payload) {
+      this.$socket.emit('newPlayer', payload)
+    }
   }
 })
