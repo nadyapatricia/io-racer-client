@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Dashboard from '../views/Dashboard.vue'
 import BoardGame from '../views/BoardGame.vue'
 import Welcome from '../views/Welcome.vue'
+import GameOver from '../views/Gameover'
 
 Vue.use(VueRouter)
 
@@ -21,6 +22,11 @@ const routes = [
     path: '/',
     name: 'Welcome',
     component: Welcome
+  },
+  {
+    path: '/gameover',
+    name: 'GameOver',
+    component: GameOver
   }
 ]
 

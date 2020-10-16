@@ -1,8 +1,11 @@
 <template>
-  <div>
-    <h1>Good {{greetings}} Racer! Are you ready to race?</h1>
-    <button @click="ready" class="btn btn-info btn-sm ">Hell yeah!</button>
-    <button @click="nope" class="btn btn-danger btn-sm ml-3"> I'm not ready yet </button>
+  <div id="game-rules" style="height: 100vh;" class="d-flex flex-column justify-content-center align-items-center">
+    <h1>Good {{greetings}} Racer!</h1>
+    <p>Are you ready to race?</p>
+    <div class="d-flex flex-row justify-content-center align-items-center">
+    <button @click="ready" class="btn btn-info btn-sm my-2 mr-3">Hell yeah!</button>
+    <button @click="nope" class="btn btn-danger btn-sm"> I'm not ready yet </button>
+    </div>
   </div>
 </template>
 
@@ -41,5 +44,8 @@ export default {
 <style scopre>
   h1 {
     font-family: 'Montserrat', sans-serif;
+  }
+  #game-rules {
+    background-image: linear-gradient(to bottom right, #d3cee3,#e9e4f0);
   }
 </style>
