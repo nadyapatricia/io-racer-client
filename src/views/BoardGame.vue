@@ -97,6 +97,10 @@ export default {
   }
 }
 </script>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 3cf030679f3d2c3147b584e43cf23829e1bdeb48
 <style scoped>
   #players {
     display: flex;
