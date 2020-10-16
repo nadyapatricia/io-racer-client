@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     players: [],
-    soal: 0
+    soal: { emot: 'Soal' },
+    winner: {}
   },
   mutations: {
     SOCKET_setPlayers (state, payload) {
@@ -14,6 +15,9 @@ export default new Vuex.Store({
     },
     SOCKET_setSoal (state, payload) {
       state.soal = payload
+    },
+    SOCKET_setWinner (state, payload) {
+      state.winner = payload
     }
   }
 })

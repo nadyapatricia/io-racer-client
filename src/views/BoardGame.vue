@@ -1,12 +1,17 @@
 <template>
-  <div>
-    <h1>{{soal}}</h1>
-    <button class="btn btn-warning" v-if="start" @click="startGame">Start</button>
-    <PlayerCard
-      v-for="(player, i) in players"
-      :key="i"
-      :player="player"
-    />
+  <div id="game-page" style="min-height: 100vh;">
+    <div class="text-center" :style="{'font-size': font_size, color: color_font}">{{soal.emot}}</div>
+    <div class="container-fluid d-flex flex-column justify-content-center text-center">
+      <h2 style="margin-bottom: 10%; color: rgb(79, 79, 58);">Click the correct arrow before your opponent does!</h2>
+      <button @click="startGame" v-if="start" class="btn btn-info" style="width: 10%; margin-left: 46.5%">Start</button>
+      <div id="players">
+        <PlayerCard
+        v-for="(player, i) in players"
+        :key="i"
+        :player="player"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -17,7 +22,11 @@ export default {
   name: 'BoardGame',
   data () {
     return {
-      start: false
+      start: false,
+      image: '',
+      color_font: 'transparent',
+      font_size: '90px',
+      audio: new Audio('../assets/zapsplat_multimedia_button_click_006_53867.mp3')
     }
   },
   components: {
@@ -28,6 +37,7 @@ export default {
       return this.$store.state.players
     },
     soal () {
+      localStorage.setItem('soal', this.$store.state.soal)
       return this.$store.state.soal
     }
   },
@@ -43,7 +53,16 @@ export default {
     },
     gamePlay (random) {
       this.$store.commit('SOCKET_setSoal', random)
+      this.color_font = 'black'
       console.log(this.$store.state.soal)
+    },
+    serverPlayers (player) {
+      this.$store.commit('SOCKET_setPlayers', player)
+      // console.log(player)
+    },
+    gameOver (player) {
+      this.$store.commit('SOCKET_setWinner', player)
+      this.$router.push({ name: 'GameOver' })
     }
   },
   methods: {
@@ -51,23 +70,49 @@ export default {
       this.$socket.emit('startGame')
       // this.start = false
     },
-    addPoint () {
-      this.$socket.emit('addPoint')
+    keyDown (e) {
+      this.onKeyDown(e)
+      if (e.keyCode === this.soal.keycode) {
+        this.$socket.emit('addPoint')
+      }
+    },
+    playSound (sound) {
+      if (sound) {
+        var audio = new Audio(sound)
+        audio.play()
+      }
+    },
+    onKeyDown (e) {
+      switch (e.keyCode) {
+        case this.soal.keyCode: this.playSound('../assets/correct.mp3'); break
+        case !this.soal.keyCode: this.playSound('../assets/failed.mp3'); break
+      }
     }
   },
-  mounted () {
-    window.addEventListener('keydown', function (e) {
-      console.log(e.keyCode)
-      if (e.keyCode === this.soal) {
-        this.addPoint()
-      }
-      // this.keycode = e.keyCode
-      // console.log(this.keycode)
-    })
+  created () {
+    window.addEventListener('keydown', this.keyDown)
+    this.audio.play()
+    console.log(this.soal)
+    if (this.soal.point === 5) {
+      console.log('Gameover')
+    }
   }
 }
 </script>
 
-<style>
-
+<style scoped>
+  #players {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+  }
+  h1 {
+    font-size: 500px;
+    text-align: center;
+    margin-top: -200px;
+    margin-bottom: -70px;
+  }
+  #game-page {
+    background-image: linear-gradient(to bottom right, #F2FAFF,#BFB6ED);
+  }
 </style>
