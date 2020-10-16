@@ -56,7 +56,6 @@ export default {
     gamePlay (random) {
       this.$store.commit('SOCKET_setSoal', random)
       this.color_font = 'black'
-      console.log(this.$store.state.soal)
     },
     serverPlayers (player) {
       this.$store.commit('SOCKET_setPlayers', player)
@@ -90,17 +89,12 @@ export default {
   },
   created () {
     window.addEventListener('keydown', this.keyDown)
-    console.log(this.soal)
     if (this.soal.point === 5) {
-      console.log('Gameover')
     }
   }
 }
 </script>
-<<<<<<< HEAD
-=======
 
->>>>>>> 3cf030679f3d2c3147b584e43cf23829e1bdeb48
 <style scoped>
   #players {
     display: flex;
