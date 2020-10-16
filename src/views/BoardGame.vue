@@ -17,6 +17,8 @@
 
 <script>
 import PlayerCard from '../components/PlayerCard'
+import sound from '../assets/correct.mp3'
+import wrongSound from '../assets/failed.mp3'
 
 export default {
   name: 'BoardGame',
@@ -68,30 +70,27 @@ export default {
   methods: {
     startGame () {
       this.$socket.emit('startGame')
-      // this.start = false
     },
     keyDown (e) {
-      this.onKeyDown(e)
       if (e.keyCode === this.soal.keycode) {
+        this.playSound(true)
         this.$socket.emit('addPoint')
+      } else {
+        this.playSound(false)
       }
     },
-    playSound (sound) {
-      if (sound) {
-        var audio = new Audio(sound)
+    playSound (isCorrect) {
+      if (isCorrect) {
+        const audio = new Audio(sound)
         audio.play()
-      }
-    },
-    onKeyDown (e) {
-      switch (e.keyCode) {
-        case this.soal.keyCode: this.playSound('../assets/correct.mp3'); break
-        case !this.soal.keyCode: this.playSound('../assets/failed.mp3'); break
+      } else {
+        const audio = new Audio(wrongSound)
+        audio.play()
       }
     }
   },
   created () {
     window.addEventListener('keydown', this.keyDown)
-    this.audio.play()
     console.log(this.soal)
     if (this.soal.point === 5) {
       console.log('Gameover')
